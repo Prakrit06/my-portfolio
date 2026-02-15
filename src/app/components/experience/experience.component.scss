@@ -1,0 +1,90 @@
+.experience-container {
+  padding: 4rem 2rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    .highlight { color: #38bdf8; }
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    border-left: 2px solid #334155; /* The vertical line */
+    margin-left: 1rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    /* The glowing dot on the line */
+    .timeline-dot {
+      position: absolute;
+      left: -2.6rem; /* Aligns dot with the line */
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background-color: #38bdf8;
+      border-radius: 50%;
+      border: 4px solid #0f172a; /* Creates a "cutout" effect */
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    .timeline-content {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateX(10px);
+        border-color: #38bdf8;
+      }
+
+      .date {
+        display: inline-block;
+        background-color: #334155;
+        color: #94a3b8;
+        padding: 0.2rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        color: #f1f5f9;
+        font-size: 1.5rem;
+      }
+
+      .company {
+        margin: 0 0 1.5rem 0;
+        color: #38bdf8;
+        font-weight: 500;
+      }
+
+      .achievements {
+        padding-left: 1.2rem;
+        color: #cbd5e1;
+        
+        li {
+          margin-bottom: 0.5rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}

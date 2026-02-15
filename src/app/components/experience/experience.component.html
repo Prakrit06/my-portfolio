@@ -1,0 +1,18 @@
+<section id="experience" class="experience-container">
+  <h2>Professional <span class="highlight">Experience</span></h2>
+
+  <div class="timeline">
+    <div *ngFor="let exp of experiences" class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="date">{{ exp.period }}</span>
+        <h3>{{ exp.role }}</h3>
+        <h4 class="company">{{ exp.company }}</h4>
+        
+        <ul class="achievements">
+          <li *ngFor="let item of exp.achievements">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
