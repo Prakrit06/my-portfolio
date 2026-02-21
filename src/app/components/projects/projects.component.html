@@ -5,32 +5,52 @@
 
   <div class="grid">
     @for (project of displayedProjects; track project.title) {
+
       <div class="project-card"
            (click)="openPopup(project)">
-        
-        <div class="card-header">
-          <span class="role-badge">{{ project.role }}</span>
-          <h3 class="line-clamp-2">
-            {{ project.title }}
-          </h3>
+
+        <!-- Role Badge -->
+        <span class="role-badge">
+          {{ project.role }}
+        </span>
+
+        <!-- Title -->
+        <h3 class="line-clamp-2">
+          {{ project.title }}
+        </h3>
+
+        <!-- Summary -->
+        <p class="summary-text line-clamp-4">
+          {{ project.summary }}
+        </p>
+
+        <!-- Metrics Highlight (Optional) -->
+        @if (project.metrics) {
+  <div class="project-metrics">
+    <div class="metrics-icon">
+      📈
+    </div>
+    <div class="metrics-text">
+      {{ project.metrics }}
+    </div>
+  </div>
+}
+
+
+        <!-- Tech Stack -->
+        <div class="tech-stack-mini">
+          @for (tech of project.technologies.slice(0, 4); track tech) {
+            <span class="mini-pill">{{ tech }}</span>
+          }
         </div>
 
-        <div class="card-body">
-          <p class="summary-text line-clamp-4">
-            {{ project.summary }}
-          </p>
-
-          <div class="tech-stack-mini">
-            @for (tech of project.technologies.slice(0, 3); track tech) {
-              <span class="mini-pill">{{ tech }}</span>
-            }
-          </div>
-
-          <div class="view-btn">
-            View Full Case Study →
-          </div>
+        <!-- CTA -->
+        <div class="view-btn">
+          View Full Case Study →
         </div>
+
       </div>
+
     }
   </div>
 
@@ -41,7 +61,7 @@
     </button>
   }
 
-  <!-- ✅ FIXED MODAL -->
+  <!-- MODAL -->
   @if (selectedProject) {
     <div class="project-overlay"
          (click)="closePopup()">
