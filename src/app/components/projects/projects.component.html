@@ -1,25 +1,87 @@
 <section id="projects" class="projects-container">
-  <h2>Featured <span class="highlight">Projects</span></h2>
-  
-  <div class="grid">
-    <div *ngFor="let project of projects" class="project-card">
-      <div class="card-header">
-        <h3>{{ project.title }}</h3>
-        <span class="role-badge">{{ project.role }}</span>
-      </div>
-      
-      <p class="description">{{ project.description }}</p>
-      
-      <div class="metrics-container" *ngIf="project.metrics">
-        <span class="metric-icon">📈</span>
-        <span class="metric-text">{{ project.metrics }}</span>
-      </div>
+  <h2>
+    Featured <span class="highlight">Projects</span>
+  </h2>
 
-      <div class="tech-stack">
-        <span *ngFor="let tech of project.technologies" class="tech-chip">
-          {{ tech }}
-        </span>
+  <div class="grid">
+    @for (project of displayedProjects; track project.title) {
+      <div class="project-card"
+           (click)="openPopup(project)">
+        
+        <div class="card-header">
+          <span class="role-badge">{{ project.role }}</span>
+          <h3 class="line-clamp-2">
+            {{ project.title }}
+          </h3>
+        </div>
+
+        <div class="card-body">
+          <p class="summary-text line-clamp-4">
+            {{ project.summary }}
+          </p>
+
+          <div class="tech-stack-mini">
+            @for (tech of project.technologies.slice(0, 3); track tech) {
+              <span class="mini-pill">{{ tech }}</span>
+            }
+          </div>
+
+          <div class="view-btn">
+            View Full Case Study →
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (allProjects.length > 3) {
+    <button class="btn-dashboard-toggle"
+            (click)="toggleProjects()">
+      {{ showAll ? 'Show Less' : 'View All Projects' }}
+    </button>
+  }
+
+  <!-- ✅ FIXED MODAL -->
+  @if (selectedProject) {
+    <div class="project-overlay"
+         (click)="closePopup()">
+
+      <div class="modal-inner"
+           (click)="$event.stopPropagation()">
+
+        <button class="close-btn"
+                (click)="closePopup()">✕</button>
+
+        <div class="modal-header">
+          <span class="modal-role">
+            {{ selectedProject.role }}
+          </span>
+          <h2>{{ selectedProject.title }}</h2>
+        </div>
+
+        <div class="modal-body-scroll">
+
+          <ul class="points-list">
+            @for (point of selectedProject.details; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+
+          @if (selectedProject.metrics) {
+            <div class="modal-metrics">
+              {{ selectedProject.metrics }}
+            </div>
+          }
+
+          <div class="modal-tech-stack">
+            @for (tech of selectedProject.technologies; track tech) {
+              <span class="modal-pill">{{ tech }}</span>
+            }
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
+  }
+
 </section>

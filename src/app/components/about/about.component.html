@@ -1,1 +1,32 @@
-<p>about works!</p>
+<section class="about-container" id="about">
+  <h2>About <span class="highlight">Me</span></h2>
+
+  <div class="about-grid">
+    <div class="image-side">
+      <div class="image-wrapper">
+        <img src="prakrit-profile.png" alt="Prakrit Saha">
+        <div class="image-border"></div>
+      </div>
+    </div>
+
+    <div class="content-side">
+      <div class="bio-card glass-card">
+        <p>{{ bio }}</p>
+        
+        <div class="facts-list">
+          @for (fact of keyFacts; track fact.label) {
+            <div class="fact-item">
+              <span class="label">{{ fact.label }}</span>
+              <span class="value">{{ fact.value }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="actions">
+          <a href="Prakrit_Saha_Resume.pdf" class="btn-primary" download>Download CV</a>
+          <a href="#contact" class="btn-secondary">Let's Connect</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

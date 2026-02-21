@@ -1,6 +1,6 @@
 .experience-container {
   padding: 4rem 2rem;
-  background-color: #0f172a;
+  background-color: #0f172a; // Deep Slate
   color: #f8fafc;
   display: flex;
   flex-direction: column;
@@ -9,14 +9,17 @@
   h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    .highlight { color: #38bdf8; }
+    .highlight { 
+      color: #38bdf8; // Sky Blue highlight
+      text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
   }
 
   .timeline {
     position: relative;
     max-width: 800px;
     width: 100%;
-    border-left: 2px solid #334155; /* The vertical line */
+    border-left: 2px solid rgba(51, 65, 85, 0.5); /* Faded vertical line */
     margin-left: 1rem;
     padding-left: 2rem;
   }
@@ -29,39 +32,73 @@
       margin-bottom: 0;
     }
 
-    /* The glowing dot on the line */
+    /* The glowing holographic dot */
     .timeline-dot {
       position: absolute;
-      left: -2.6rem; /* Aligns dot with the line */
+      left: -2.6rem; 
       top: 0;
       width: 16px;
       height: 16px;
       background-color: #38bdf8;
       border-radius: 50%;
-      border: 4px solid #0f172a; /* Creates a "cutout" effect */
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+      border: 4px solid #0f172a; 
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+      z-index: 3;
     }
 
     .timeline-content {
-      background-color: #1e293b;
+      // Glassmorphism Core
+      position: relative;
+      background: rgba(30, 41, 59, 0.6); 
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
       padding: 2rem;
       border-radius: 12px;
-      border: 1px solid #334155;
-      transition: transform 0.3s ease;
+      border: 1px solid rgba(51, 65, 85, 0.4);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+
+      // Holographic Gleam effect
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          rgba(56, 189, 248, 0.1),
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        transform: skewX(-20deg);
+        transition: 0.7s;
+      }
 
       &:hover {
-        transform: translateX(10px);
+        transform: translateX(10px) translateY(-5px);
         border-color: #38bdf8;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                    0 0 20px rgba(56, 189, 248, 0.1);
+
+        &::after {
+          left: 150%;
+        }
       }
 
       .date {
         display: inline-block;
-        background-color: #334155;
-        color: #94a3b8;
+        background-color: rgba(51, 65, 85, 0.6);
+        color: #38bdf8;
         padding: 0.2rem 0.8rem;
         border-radius: 15px;
         font-size: 0.85rem;
         margin-bottom: 1rem;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        font-family: 'Courier New', monospace; // Terminal vibe
       }
 
       h3 {
@@ -74,6 +111,7 @@
         margin: 0 0 1.5rem 0;
         color: #38bdf8;
         font-weight: 500;
+        letter-spacing: 0.5px;
       }
 
       .achievements {
@@ -81,8 +119,13 @@
         color: #cbd5e1;
         
         li {
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.8rem;
           line-height: 1.6;
+          position: relative;
+          
+          &::marker {
+            color: #38bdf8;
+          }
         }
       }
     }
